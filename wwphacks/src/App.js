@@ -16,6 +16,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import MailIcon from "@material-ui/icons/Mail";
+import Avatar from "@material-ui/core/Avatar";
 // template found at https://material-ui.com/components/drawers/
 
 const drawerWidth = 240;
@@ -81,6 +82,7 @@ export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+  const [username, setUser] = React.useState("Sign In");
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -88,6 +90,9 @@ export default function PersistentDrawerLeft() {
 
   const handleDrawerClose = () => {
     setOpen(false);
+  };
+  const setUsername = (name) => {
+    setUser(name);
   };
 
   return (
@@ -133,6 +138,12 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </div>
         <Divider />
+        <ListItem button key={username}>
+          <ListItemIcon>
+            <Avatar />
+          </ListItemIcon>
+          <ListItemText primary={username} />
+        </ListItem>
 
         <List>
           {["Home", "Matches", "Account Settings"].map((text, i) => (
@@ -159,6 +170,13 @@ export default function PersistentDrawerLeft() {
         })}
       >
         <div className={classes.drawerHeader} />
+        <div>
+          <h1>
+            {" "}
+            Hi, this is where content will be. Use a router for each of the
+            views
+          </h1>
+        </div>
       </main>
     </div>
   );
