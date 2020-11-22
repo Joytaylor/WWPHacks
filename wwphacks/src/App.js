@@ -96,7 +96,7 @@ export default function PersistentDrawerLeft() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const setUsername = (name) => {
+  const setUsername = () => {
     setUser("Joy");
   };
 
@@ -159,7 +159,7 @@ export default function PersistentDrawerLeft() {
             {[
               ["Home", "/"],
               ["Matches", "/Matches"],
-              ["Account Settings", "./settings"],
+              ["Account Settings", "./Settings"],
             ].map((text) => (
               <Link to={text[1]}>
                 <ListItem button key={text[0]}>

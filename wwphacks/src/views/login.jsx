@@ -1,5 +1,6 @@
 import React from "react";
 
+import TechMatch from "../images/techMatch.png";
 import "../style.css";
 //import loginImg from "../../login.svg";
 
@@ -14,7 +15,7 @@ export default class Login extends React.Component {
         <div className="header">Login</div>
         <div className="content">
           <div className="image">
-            <img />
+            <img scr={TechMatch} alt="" />
           </div>
           <div className="form">
             <div className="form-group">
