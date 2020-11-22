@@ -81,7 +81,7 @@ const useStyles = makeStyles((theme) => ({
 export default function PersistentDrawerLeft() {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
   const [username, setUser] = React.useState("Sign In");
 
   const handleDrawerOpen = () => {
@@ -92,7 +92,7 @@ export default function PersistentDrawerLeft() {
     setOpen(false);
   };
   const setUsername = (name) => {
-    setUser(name);
+    setUser("Joy");
   };
 
   return (
@@ -138,9 +138,13 @@ export default function PersistentDrawerLeft() {
           </IconButton>
         </div>
         <Divider />
-        <ListItem button key={username}>
+        <ListItem button key="username" onClick={setUsername}>
           <ListItemIcon>
-            <Avatar />
+            {username === "Sign In" ? (
+              <Avatar />
+            ) : (
+              <Avatar> {username[0]}</Avatar>
+            )}
           </ListItemIcon>
           <ListItemText primary={username} />
         </ListItem>
@@ -174,7 +178,7 @@ export default function PersistentDrawerLeft() {
           <h1>
             {" "}
             Hi, this is where content will be. Use a router for each of the
-            views
+            views!
           </h1>
         </div>
       </main>
