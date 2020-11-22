@@ -1,6 +1,8 @@
 import React from "react";
 import clsx from "clsx";
-import Home from "./views/Home.js";
+import Home from "./views/Home";
+import Matches from "./views/Matches";
+import Login from "./views/login";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -117,7 +119,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            Just Network
+            TechMatch
           </Typography>
         </Toolbar>
       </AppBar>
@@ -153,10 +155,16 @@ export default function PersistentDrawerLeft() {
           </ListItem>
 
           <List>
-            {["Home", "Matches", "Account Settings"].map((text, i) => (
-              <ListItem button key={text}>
-                <ListItemText primary={text} />
-              </ListItem>
+            {[
+              ["Home", "/"],
+              ["Matches", "/Matches"],
+              ["Account Settings", "./settings"],
+            ].map((text) => (
+              <Link to={text[1]}>
+                <ListItem button key={text[0]}>
+                  <ListItemText primary={text[0]} />
+                </ListItem>
+              </Link>
             ))}
           </List>
           <Divider />
@@ -183,11 +191,10 @@ export default function PersistentDrawerLeft() {
               <Route path="/">
                 <Home />
               </Route>
+              <Route path="/findMatches">
+                <Matches />
+              </Route>
             </Switch>
-            <h1>
-              Hi, this is where content will be. Use a router for each of the
-              views!
-            </h1>
           </div>
         </main>
       </Router>
