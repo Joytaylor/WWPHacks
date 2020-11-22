@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import Home from "./views/Home.js";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -17,6 +18,7 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import MailIcon from "@material-ui/icons/Mail";
 import Avatar from "@material-ui/core/Avatar";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 // template found at https://material-ui.com/components/drawers/
 
 const drawerWidth = 240;
@@ -119,69 +121,76 @@ export default function PersistentDrawerLeft() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Drawer
-        className={classes.drawer}
-        variant="persistent"
-        anchor="left"
-        open={open}
-        classes={{
-          paper: classes.drawerPaper,
-        }}
-      >
-        <div className={classes.drawerHeader}>
-          <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? (
-              <ChevronLeftIcon />
-            ) : (
-              <ChevronRightIcon />
-            )}
-          </IconButton>
-        </div>
-        <Divider />
-        <ListItem button key="username" onClick={setUsername}>
-          <ListItemIcon>
-            {username === "Sign In" ? (
-              <Avatar />
-            ) : (
-              <Avatar> {username[0]}</Avatar>
-            )}
-          </ListItemIcon>
-          <ListItemText primary={username} />
-        </ListItem>
+      <Router>
+        <Drawer
+          className={classes.drawer}
+          variant="persistent"
+          anchor="left"
+          open={open}
+          classes={{
+            paper: classes.drawerPaper,
+          }}
+        >
+          <div className={classes.drawerHeader}>
+            <IconButton onClick={handleDrawerClose}>
+              {theme.direction === "ltr" ? (
+                <ChevronLeftIcon />
+              ) : (
+                <ChevronRightIcon />
+              )}
+            </IconButton>
+          </div>
+          <Divider />
+          <ListItem button key="username" onClick={setUsername}>
+            <ListItemIcon>
+              {username === "Sign In" ? (
+                <Avatar />
+              ) : (
+                <Avatar> {username[0]}</Avatar>
+              )}
+            </ListItemIcon>
+            <ListItemText primary={username} />
+          </ListItem>
 
-        <List>
-          {["Home", "Matches", "Account Settings"].map((text, i) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["Contact Us"].map((text) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                <MailIcon />
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </Drawer>
-      <main
-        className={clsx(classes.content, {
-          [classes.contentShift]: open,
-        })}
-      >
-        <div className={classes.drawerHeader} />
-        <div>
-          <h1>
-            {" "}
-            Hi, this is where content will be. Use a router for each of the
-            views!
-          </h1>
-        </div>
-      </main>
+          <List>
+            {["Home", "Matches", "Account Settings"].map((text, i) => (
+              <ListItem button key={text}>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <List>
+            {["Contact Us"].map((text) => (
+              <ListItem button key={text}>
+                <ListItemIcon>
+                  <MailIcon />
+                </ListItemIcon>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))}
+          </List>
+        </Drawer>
+
+        <main
+          className={clsx(classes.content, {
+            [classes.contentShift]: open,
+          })}
+        >
+          <div className={classes.drawerHeader} />
+          <div>
+            <Switch>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+            <h1>
+              Hi, this is where content will be. Use a router for each of the
+              views!
+            </h1>
+          </div>
+        </main>
+      </Router>
     </div>
   );
 }
