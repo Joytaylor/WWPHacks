@@ -3,6 +3,7 @@ import clsx from "clsx";
 import Home from "./views/Home";
 import Matches from "./views/Matches";
 import Login from "./views/login";
+import TechMatch from "./images/techMatch.png";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -119,7 +120,7 @@ export default function PersistentDrawerLeft() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap>
-            TechMatch
+            <img src={TechMatch} alt="TechMatch"></img>
           </Typography>
         </Toolbar>
       </AppBar>
@@ -188,11 +189,11 @@ export default function PersistentDrawerLeft() {
           <div className={classes.drawerHeader} />
           <div>
             <Switch>
+              <Route path="/Matches">
+                <Matches />
+              </Route>
               <Route path="/">
                 <Home />
-              </Route>
-              <Route path="/findMatches">
-                <Matches />
               </Route>
             </Switch>
           </div>
